@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 
 import requests
-import keyring
-from getpass import getpass
-
-def get_password(username):
-	password = keyring.get_password("hawking-tools", username)
-
-	if password is None:
-		password = getpass("Password: ")
-		keyring.set_password("hawking-tools", username, password)
-
-	return password
+import hawking_auth
 
 def main():
 	username = input("Username: ").strip()
-	password = get_password(username)
+	password = hawking_auth.get_password(username)
 
 	session = requests.Session()
 	session.auth = (username, password)
