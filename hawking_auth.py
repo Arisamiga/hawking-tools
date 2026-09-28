@@ -2,7 +2,6 @@
 
 import requests
 import keyring
-import sys
 from getpass import getpass
 
 def get_password(username):
