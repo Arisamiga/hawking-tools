@@ -1,0 +1,20 @@
+[project]
+name = "hawking-tools"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "JoDev00", email = "JoDev00@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "keyring>=25.7.0",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+hawking-tools = "hawking_tools:main"
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
