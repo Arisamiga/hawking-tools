@@ -11,7 +11,7 @@ def get_password(username):
 	if not is_valid_login(username, password):
 		password = getpass("Password: ")
 		keyring.set_password("hawking-tools", username, password)
-		get_password(password)
+		get_password(username)
 
 	return password
 
