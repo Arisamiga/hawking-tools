@@ -6,14 +6,16 @@ import sys
 from getpass import getpass
 
 def get_password(username):
-	password = keyring.get_password("hawking-tools", username)
+	return keyring.get_password("hawking-tools", username)
 
-	if not is_valid_login(username, password):
+def set_password(username, password):
+	keyring.set_password("hawking-tools", username, password)
+
+def authentication_flow(username, password):
+	while not is_valid_login(username, password):
 		password = getpass("Password: ")
-		keyring.set_password("hawking-tools", username, password)
-		get_password(username)
 
-	return password
+	keyring.set_password("hawking-tools", username, password)
 
 def is_valid_login(username, password):
 	session = requests.Session()
