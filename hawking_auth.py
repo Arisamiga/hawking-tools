@@ -8,14 +8,10 @@ from getpass import getpass
 def get_password(username):
 	password = keyring.get_password("hawking-tools", username)
 
-	if password is None or not is_valid_login(username, password):
+	if not is_valid_login(username, password):
 		password = getpass("Password: ")
-
-		if is_valid_login(username, password):
-			keyring.set_password("hawking-tools", username, password)
-		else:
-			# todo: will make a more robust system for this soon, that allows n attempts before restart
-			sys.exit("Incorrect password. Please restart the CLI and try again.")
+		keyring.set_password("hawking-tools", username, password)
+		get_password(password)
 
 	return password
 
