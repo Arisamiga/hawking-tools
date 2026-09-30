@@ -17,10 +17,7 @@ def authentication_flow(username, password):
 	keyring.set_password("hawking-tools", username, password)
 
 def is_valid_login(username, password):
-	session = requests.Session()
-	session.auth = (username, password)
-
-	auth_check = session.get("https://hawking.computing.dcu.ie/api/auth", timeout=10)
+	auth_check = requests.get("https://hawking.computing.dcu.ie/api/auth", timeout=10, auth=(username, password))
 
 	if auth_check.status_code == 200:
 		return True
