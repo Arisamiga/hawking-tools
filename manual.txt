@@ -1,5 +1,5 @@
-| cmd    | argument(s)           | example                 | description                          |   |
-|--------|-----------------------|-------------------------|--------------------------------------|---|
-| upload | file_path OR wildcard | upload assignments/*.py | upload task(s); supports bulk upload |   |
-|        |                       |                         |                                      |   |
-|        |                       |                         |                                      |   |
+| cmd    | argument(s)                     | info                                  |
+|--------|---------------------------------|---------------------------------------|
+| upload | [path/file.xyz] OR [path/*.xyz] | upload task(s) - supports bulk upload |
+| exit   | none                            | exits the program                     |
+|        |                                 |                                       |
