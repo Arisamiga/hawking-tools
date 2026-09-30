@@ -9,7 +9,7 @@ def main():
 	password = hawking_auth.get_password(username)
 	hawking_auth.authentication_flow(username, password)
 	authenticated_session = hawking_auth.get_authenticated_session(username, password)
-	
+
 	hawking_upload.upload_file(authenticated_session, "rev.py")
 
 if __name__ == "__main__":
