@@ -11,7 +11,7 @@ import time
 def main():
 	print_file("greeting.txt")
 
-	username = input("⋆˚｡ Username: ").strip()
+	username = hawking_auth.get_username()
 	password = hawking_auth.get_password(username)
 	hawking_auth.authentication_flow(username, password)
 	authenticated_session = hawking_auth.get_authenticated_session(username, password)

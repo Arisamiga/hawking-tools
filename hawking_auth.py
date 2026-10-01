@@ -7,6 +7,14 @@ from getpass import getpass
 def get_password(username):
 	return keyring.get_password("hawking-tools", username)
 
+def get_username():
+	credential = keyring.get_credential("hawking-tools", None)
+
+	if credential:
+		return credential.username
+
+	return input("⋆˚｡ Username: ").strip()
+
 def set_password(username, password):
 	keyring.set_password("hawking-tools", username, password)
 
