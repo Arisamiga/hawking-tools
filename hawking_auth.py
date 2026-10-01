@@ -26,8 +26,8 @@ def authentication_flow(username, password):
 
 def is_valid_login(username, password):
 	auth_check = requests.get("https://hawking.computing.dcu.ie/api/auth", timeout=10, auth=(username, password))
-	
-	return auth_check.status_code == 200:
+
+	return auth_check.status_code == 200
 
 def get_authenticated_session(username, password):
 	session = requests.Session()
