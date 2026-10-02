@@ -5,6 +5,7 @@ from pygments import highlight
 from pygments.lexers import guess_lexer
 from pygments.formatters import TerminalFormatter
 import json
+import base64
 
 api_base = "https://hawking.computing.dcu.ie/api"
 module_for_task = api_base + "/moduleForTask"
@@ -19,4 +20,6 @@ def display_task_info(response):
 	print(f"\n{highlighted_script}\n")
 
 	for test, result in zip(data["tests"], data["results"]):
-		print(f"{test["name"]}: {result["correct"]}")
+		args = base64.b64decode(test["args"]).decode("utf-8").strip().replace("\n", " ")
+
+		print(f"{test["name"]} | {args} | {result["correct"]}")
