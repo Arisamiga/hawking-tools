@@ -12,8 +12,7 @@ def main():
 	hawking_auth.authentication_flow(username, password)
 	authenticated_session = hawking_auth.get_authenticated_session(username, password)
 
-	print("To view available commands, type 'help'.")
-
+	''' Todo: command-based args
 	while True:
 		user_input = input(". ݁₊ ⊹ . ݁ Enter a command: ")
 		if user_input == "exit":
@@ -24,10 +23,7 @@ def main():
 		if command == "upload":
 			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
-
-def print_file(file):
-	with open(file, "r") as f:
-		print(f"\n{ f.read() }\n")
+	'''
 
 if __name__ == "__main__":
 	main()
