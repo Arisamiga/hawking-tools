@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 import sys
-import hawking_auth
-from services import hawking_upload
-from pathlib import Path
 import time
+from pathlib import Path
+
+from .core import hawking_auth
+from .services import hawking_upload
+
 
 def main():
 	username = hawking_auth.get_username()
@@ -25,9 +27,6 @@ def main():
 			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
 
-def print_file(file):
-	with open(file, "r") as f:
-		print(f"\n{ f.read() }\n")
 
 if __name__ == "__main__":
 	main()

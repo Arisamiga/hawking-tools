@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-hawking-tools = "hawking_tools:main"
+hawking = "hawking_tools.hawking:main"
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]

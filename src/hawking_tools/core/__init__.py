@@ -1,0 +1,1 @@
+"""Core Hawking client functionality."""
