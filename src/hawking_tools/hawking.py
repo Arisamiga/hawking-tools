@@ -26,6 +26,9 @@ def main():
 		if command == "upload":
 			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
+		elif command == "logout":
+			hawking_auth.logout(username)
+			sys.exit()
 
 
 if __name__ == "__main__":

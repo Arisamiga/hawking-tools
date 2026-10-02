@@ -6,7 +6,7 @@ from getpass import getpass
 
 
 def get_password(username):
-	return keyring.get_password("hawking-tools", username)
+	return keyring.get_password("hawking-tools", username) or getpass("Password: ")
 
 
 def get_username():
@@ -29,6 +29,7 @@ def authentication_flow(username, password):
 		password = getpass("Password: ")
 
 	keyring.set_password("hawking-tools", username, password)
+	print("Logged in as: ", username)
 
 
 def is_valid_login(username, password):
@@ -36,6 +37,9 @@ def is_valid_login(username, password):
 
 	return auth_check.status_code == 200
 
+def logout(username):
+	keyring.delete_password("hawking-tools", username)
+	print(f"Logged out {username} successfully.")
 
 def get_authenticated_session(username, password):
 	session = requests.Session()
