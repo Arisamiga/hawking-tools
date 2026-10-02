@@ -24,6 +24,9 @@ def main():
 		command = user_input.split(" ")[0]
 
 		if command == "upload":
+			if len(user_input.split(" ")) < 2:
+				print("Please provide a file to upload.")
+				continue
 			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
 		elif command == "logout":
