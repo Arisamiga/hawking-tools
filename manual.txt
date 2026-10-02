@@ -1,5 +1,0 @@
-| cmd    | argument(s)                     | info                                  |
-|--------|---------------------------------|---------------------------------------|
-| upload | [path/file.xyz] OR [path/*.xyz] | upload task(s) - supports bulk upload |
-| exit   | none                            | exits the program                     |
-|        |                                 |                                       |
