@@ -2,14 +2,11 @@
 
 import sys
 import hawking_auth
-import services.hawking_upload
-import services.hawking_tasks
+from services import hawking_upload
 from pathlib import Path
 import time
 
 def main():
-	print_file("greeting.txt")
-
 	username = hawking_auth.get_username()
 	password = hawking_auth.get_password(username)
 	hawking_auth.authentication_flow(username, password)
@@ -25,10 +22,8 @@ def main():
 		command = user_input.split(" ")[0]
 
 		if command == "upload":
-			services.hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
+			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
-		elif command == "help":
-			print_file("manual.txt")
 
 def print_file(file):
 	with open(file, "r") as f:
