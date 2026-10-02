@@ -6,6 +6,7 @@ from pygments.lexers import guess_lexer
 from pygments.formatters import TerminalFormatter
 import json
 import base64
+from termcolor import colored, cprint
 
 api_base = "https://hawking.computing.dcu.ie/api"
 module_for_task = api_base + "/moduleForTask"
@@ -21,5 +22,6 @@ def display_task_info(response):
 
 	for test, result in zip(data["tests"], data["results"]):
 		args = base64.b64decode(test["args"]).decode("utf-8").strip().replace("\n", " ")
+		correct = result["correct"]
 
-		print(f"{test["name"]} | {args} | {result["correct"]}")
+		cprint(f"{test["name"]} | {args}", "green" if correct else "red")
