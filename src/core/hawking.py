@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-import requests
 import hawking_auth
-import hawking_upload
-import hawking_tasks
+import services.hawking_upload
+import services.hawking_tasks
 from pathlib import Path
 import time
 
@@ -26,7 +25,7 @@ def main():
 		command = user_input.split(" ")[0]
 
 		if command == "upload":
-			hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
+			services.hawking_upload.bulk_upload(authenticated_session, Path(".").glob(user_input.split(" ")[1]))
 			time.sleep(1)
 		elif command == "help":
 			print_file("manual.txt")

@@ -29,6 +29,3 @@ def upload_file(authenticated_session, file):
 def bulk_upload(authenticated_session, files):
 	for file in files:
 		upload_file(authenticated_session, file)
-
-if __name__ == "__main__":
-	main()

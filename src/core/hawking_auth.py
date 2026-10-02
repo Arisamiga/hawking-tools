@@ -33,6 +33,3 @@ def get_authenticated_session(username, password):
 	session = requests.Session()
 	session.auth = (username, password)
 	return session
-
-if __name__ == "__main__":
-	main()
