@@ -23,5 +23,11 @@ def display_task_info(response):
 	for test, result in zip(data["tests"], data["results"]):
 		args = base64.b64decode(test["args"]).decode("utf-8").strip().replace("\n", " ")
 		correct = result["correct"]
+		color = "green" if correct else "red"
 
-		cprint(f"{test["name"]} | {args}", "green" if correct else "red")
+		print(f"-"*30)
+		cprint(f"{test["name"]} | {args}", color)
+		cprint(f"expected stdout: {test["expectedStdout"].strip()}", color)
+		cprint(f"actual stdout: {result["stdout"].strip()}", color)
+		cprint(f"stderr: {result["stderr"].strip()}", color)
+		print(f"-"*30)
