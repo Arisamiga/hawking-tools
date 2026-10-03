@@ -15,7 +15,7 @@ api_base = "https://hawking.computing.dcu.ie/api"
 module_for_task = api_base + "/moduleForTask"
 
 
-def select_module_from_task(current_module, module_id, task):
+def select_module_from_task(module_id):
 	for i, module in enumerate(module_id):
 		print(f"{i + 1}. {module['banner']} (ID: {module['id']})")
 	selected_index = int(input("Enter the number of the correct module: ")) - 1
@@ -29,15 +29,12 @@ def get_module_from_task(authenticated_session, task):
 		for module in module_id:
 			if module["banner"] == current_module:
 				return module["id"]
-			else:
-				return select_module_from_task(current_module, module_id, task)
+		print(f"Current module '{current_module}' does not match any modules for {task}. Please select the correct module from the following list:")
+		return select_module_from_task(module_id)
 
 	if len(module_id) > 1:
 		print(f"Multiple modules found for {task}. \n Please select the correct module from the following list:")
-		for i, module in enumerate(module_id):
-			print(f"{i + 1}. {module['banner']} (ID: {module['id']})")
-		selected_index = int(input("Enter the number of the correct module: ")) - 1
-		return module_id[selected_index]["id"]
+		return select_module_from_task(module_id)
 	elif len(module_id) == 1:
 		return module_id[0]["id"]
 	else:
