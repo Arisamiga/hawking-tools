@@ -14,7 +14,18 @@ module_for_task = api_base + "/moduleForTask"
 
 
 def get_module_from_task(authenticated_session, task):
-	return authenticated_session.get(f"{module_for_task}/{Path(task).name}").json()[0].get("id")
+	module_id = authenticated_session.get(f"{module_for_task}/{Path(task).name}").json()
+	if len(module_id) > 1:
+		print(f"Multiple modules found for {task}. \n Please select the correct module from the following list:")
+		for i, module in enumerate(module_id):
+			print(f"{i + 1}. {module['banner']} (ID: {module['id']})")
+		selected_index = int(input("Enter the number of the correct module: ")) - 1
+		return module_id[selected_index]["id"]
+	elif len(module_id) == 1:
+		return module_id[0]["id"]
+	else:
+		print(f"No module found for {task}. Please check the task name and try again.")
+		return None
 
 
 def display_task_info(response):
