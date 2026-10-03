@@ -18,7 +18,6 @@ def upload_file(authenticated_session, file):
 
 		filename = Path(file).name
 
-		print(f"Uploading {filename}...")
 		try:
 			request = authenticated_session.post(f"{upload_url}/{module}/{filename}", files=file_upload, timeout=10)
 			print(request.json())

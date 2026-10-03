@@ -9,12 +9,29 @@ from pygments.formatters import TerminalFormatter
 from pygments.lexers import guess_lexer
 from termcolor import cprint
 
+from ..core import hawking_state
+
 api_base = "https://hawking.computing.dcu.ie/api"
 module_for_task = api_base + "/moduleForTask"
 
 
+def select_module_from_task(current_module, module_id, task):
+	for i, module in enumerate(module_id):
+		print(f"{i + 1}. {module['banner']} (ID: {module['id']})")
+	selected_index = int(input("Enter the number of the correct module: ")) - 1
+	return module_id[selected_index]["id"]
+
 def get_module_from_task(authenticated_session, task):
 	module_id = authenticated_session.get(f"{module_for_task}/{Path(task).name}").json()
+
+	if hawking_state.get_current_module(authenticated_session.auth[0]) is not None:
+		current_module = hawking_state.get_current_module(authenticated_session.auth[0])
+		for module in module_id:
+			if module["banner"] == current_module:
+				return module["id"]
+			else:
+				return select_module_from_task(current_module, module_id, task)
+
 	if len(module_id) > 1:
 		print(f"Multiple modules found for {task}. \n Please select the correct module from the following list:")
 		for i, module in enumerate(module_id):
