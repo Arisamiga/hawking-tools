@@ -18,8 +18,12 @@ module_for_task = api_base + "/moduleForTask"
 def select_module_from_task(module_id):
 	for i, module in enumerate(module_id):
 		print(f"{i + 1}. {module['banner']} (ID: {module['id']})")
-	selected_index = int(input("Enter the number of the correct module: ")) - 1
-	return module_id[selected_index]["id"]
+	while True:
+		selected_index = input("Enter the number of the correct module: ")
+		if selected_index.isdigit() and 1 <= int(selected_index) <= len(module_id):
+			return module_id[int(selected_index) - 1]["id"]
+		else:
+			print("Invalid selection. Please try again.")
 
 def get_module_from_task(authenticated_session, task):
 	module_id = authenticated_session.get(f"{module_for_task}/{Path(task).name}").json()

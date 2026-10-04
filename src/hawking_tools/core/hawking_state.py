@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import keyring
+import keyring.errors
 
 SERVICE = "hawking-tools-state"
 
